@@ -24,14 +24,12 @@ jobs:
     params: {bump: patch}
   - task: build and test
     file: ExpenseTracker/ci/build.yml
-  - put: ExpenseTracker-artifacts
     params:
       file: build-output/expenseTracker-*.jar
 
 - name: deploy
   plan:
   - get: ExpenseTracker
-  - get: ExpenseTracker-artifacts
   - put: deployment
     params:
       path: ExpenseTracker-artifacts/expenseTracker-*.jar
