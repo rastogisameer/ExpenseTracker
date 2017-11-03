@@ -7,7 +7,6 @@ public class Expense {
     private String payor;
     private double amount;
     private String reason;
-    private Date expenseDate;
 
     public String getReason() {
         return reason;
@@ -17,7 +16,7 @@ public class Expense {
         this.reason = reason;
     }
 
-
+    private Date expenseDate;
 
     public Expense(String payor, double amount, String reason, Date expenseDate) {
         this.payor = payor;
@@ -62,6 +61,8 @@ public class Expense {
         this.amount = amount;
     }
 
+
+
     public Date getExpenseDate() {
         return expenseDate;
     }
@@ -69,4 +70,5 @@ public class Expense {
     public void setExpenseDate(Date expenseDate) {
         this.expenseDate = expenseDate;
     }
+
 }
