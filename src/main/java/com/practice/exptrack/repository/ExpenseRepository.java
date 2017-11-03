@@ -23,6 +23,10 @@ public class ExpenseRepository {
     }
 
     public long create(Expense e1) {
-        return 1;
+
+        int id =repository.size()+1;
+
+        repository.put((long)id,e1);
+        return id;
     }
 }

@@ -39,7 +39,7 @@ public class ExpenseRepositoryTest {
 
         String payor = "Sameer";
         List<Expense> list = repository.list(payor);
-        assertNull(list);
+        assertTrue(list.size()==0);
 
     }
     @Test
