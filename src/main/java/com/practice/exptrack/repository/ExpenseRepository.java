@@ -24,10 +24,10 @@ public class ExpenseRepository {
 
     public long create(Expense e1) {
 
-        int id =repository.size()+1;
+        e1.setId(repository.size() + 1);
+        repository.put(e1.getId(), e1);
+        return e1.getId();
 
-        repository.put((long)id,e1);
-        return id;
     }
 
     public Expense update(long id, Expense expense) {

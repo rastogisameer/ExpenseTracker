@@ -1,4 +1,4 @@
-package com.practice.exptrack.main;
+package com.practice.exptrack;
 
 import com.practice.exptrack.repository.ExpenseRepository;
 import org.springframework.boot.SpringApplication;

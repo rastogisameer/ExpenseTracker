@@ -6,10 +6,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/expense-tracker")
 public class ExpenseController {
-    ExpenseRepository expenseRepository = new ExpenseRepository();
+    private ExpenseRepository expenseRepository;
+
+    public ExpenseController(ExpenseRepository r){
+        this.expenseRepository = r;
+    }
     @PutMapping("{id}")
     public ResponseEntity<Expense> update(@RequestBody long id, @RequestBody Expense expense) {
 
@@ -20,5 +26,17 @@ public class ExpenseController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("{payor}")
+    public ResponseEntity<List<Expense>> list(@PathVariable String payor) {
 
+        List<Expense> list = expenseRepository.list(payor);
+
+        return new ResponseEntity<List<Expense>>(list, HttpStatus.OK);
+    }
+    @PostMapping
+    public ResponseEntity<Expense> create(@RequestBody Expense expense) {
+        long id = expenseRepository.create(expense);
+
+        return new ResponseEntity(id, HttpStatus.CREATED);
+    }
 }

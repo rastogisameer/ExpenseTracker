@@ -14,7 +14,7 @@ import static org.junit.Assert.assertThat;
 
 public class ExpenseControllerTest {
     private ExpenseRepository expenseRepository = new ExpenseRepository();
-    private ExpenseController controller = new ExpenseController();
+    private ExpenseController controller = new ExpenseController(expenseRepository);
 
 
     @Test

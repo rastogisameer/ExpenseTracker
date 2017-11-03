@@ -18,6 +18,9 @@ public class Expense {
 
     private Date expenseDate;
 
+    public Expense() {
+    }
+
     public Expense(String payor, double amount, String reason, Date expenseDate) {
         this.payor = payor;
         this.amount = amount;
