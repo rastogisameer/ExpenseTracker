@@ -1,6 +1,6 @@
 ---
 resources:
-- name: expenseTracker
+- name: ExpenseTracker
   type: git
   source:
     uri: {{github-repository}}
@@ -19,20 +19,20 @@ resources:
 jobs:
 - name: build
   plan:
-  - get: expenseTracker
+  - get: ExpenseTracker
     trigger: true
     params: {bump: patch}
   - task: build and test
-    file: expenseTracker/ci/build.yml
-  - put: expenseTracker-artifacts
+    file: ExpenseTracker/ci/build.yml
+  - put: ExpenseTracker-artifacts
     params:
       file: build-output/expenseTracker-*.jar
 
 - name: deploy
   plan:
-  - get: expenseTracker
-  - get: expenseTracker-artifacts
+  - get: ExpenseTracker
+  - get: ExpenseTracker-artifacts
   - put: deployment
     params:
-      path: expenseTracker-artifacts/expenseTracker-*.jar
+      path: ExpenseTracker-artifacts/expenseTracker-*.jar
 
