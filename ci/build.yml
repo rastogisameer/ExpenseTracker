@@ -7,7 +7,7 @@ image_resource:
     tag: '8-jdk'
 
 inputs:
-  - name: ExpenseTracker
+  - name: expense-tracker
 
 outputs:
   - name: build-output
@@ -17,7 +17,7 @@ run:
   args:
   - -exc
   - |
-    cd expenseTracker
+    cd expense-tracker
     chmod +x gradlew
     ./gradlew build
-    cp build/libs/expenseTracker.jar ../build-output
+    cp build/libs/expense-tracker.jar ../build-output

@@ -1,16 +1,16 @@
-  resources:
-- name: ExpenseTracker
+resources:
+- name: expense-tracker
   type: git
   source:
    uri: {{github-repository}}
    branch: master
    private_key: {{github-private-key}}
 
-- name: ExpenseTracker-artifacts
+- name: expense-tracker-artifacts
   type: s3
   source:
     bucket: {{aws-bucket}}
-    regexp: releases/expenseTracker.jar
+    regexp: releases/expense-tracker.jar
     access_key_id: {{aws-access-key-id}}
     secret_access_key: {{aws-secret-access-key}}
 
@@ -26,20 +26,20 @@
 jobs:
 - name: build
   plan:
-  - get: ExpenseTracker
+  - get: expense-tracker
     trigger: true
   - task: build and test
-    file: expenseTracker/ci/build.yml
-  - put: ExpenseTracker-artifacts
+    file: expense-tracker/ci/build.yml
+  - put: expense-tracker-artifacts
     params:
-      file: build-output/expenseTracker.jar
+      file: build-output/expense-tracker.jar
 
 - name: deploy
   plan:
-  - get: ExpenseTracker
-  - get: ExpenseTracker-artifacts
+  - get: expense-tracker
+  - get: expense-tracker-artifacts
     trigger: true
     passed: [build]
   - put: deployment
     params:
-     path: ExpenseTracker-artifacts/expenseTracker.jar
+     path: expense-tracker-artifacts/expense-tracker.jar
