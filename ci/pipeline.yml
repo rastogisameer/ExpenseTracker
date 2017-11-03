@@ -1,0 +1,38 @@
+---
+resources:
+- name: expenseTracker
+  type: git
+  source:
+    uri: {{github-repository}}
+    branch: master
+    private_key: {{github-private-key}}
+
+- name: deployment
+  type: cf
+  source:
+    api: {{cf-api-url}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-org}}
+    space: production
+
+jobs:
+- name: build
+  plan:
+  - get: expenseTracker
+    trigger: true
+    params: {bump: patch}
+  - task: build and test
+    file: expenseTracker/ci/build.yml
+  - put: expenseTracker-artifacts
+    params:
+      file: build-output/expenseTracker-*.jar
+
+- name: deploy
+  plan:
+  - get: expenseTracker
+  - get: expenseTracker-artifacts
+  - put: deployment
+    params:
+      path: expenseTracker-artifacts/expenseTracker-*.jar
+
