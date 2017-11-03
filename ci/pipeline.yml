@@ -1,4 +1,4 @@
-resources:
+  resources:
 - name: ExpenseTracker
   type: git
   source:
@@ -29,7 +29,7 @@ jobs:
   - get: ExpenseTracker
     trigger: true
   - task: build and test
-    file: ExpenseTracker/ci/build.yml
+    file: expenseTracker/ci/build.yml
   - put: ExpenseTracker-artifacts
     params:
       file: build-output/expenseTracker.jar
@@ -42,4 +42,4 @@ jobs:
     passed: [build]
   - put: deployment
     params:
-     path: build/libs/expenseTracker.jar
+     path: ExpenseTracker-artifacts/expenseTracker.jar
