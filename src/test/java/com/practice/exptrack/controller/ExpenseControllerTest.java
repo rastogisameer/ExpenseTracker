@@ -20,7 +20,7 @@ public class ExpenseControllerTest {
     @Test
     public void testUpdateExpense(){
     Expense expected = new
-        Expense("Prasad Kamat", 20.50, "Snacks", new Date("2017-01-07"));
+        Expense("Prasad Kamat", 20.50, "Snacks", new Date());
 
         ResponseEntity response = controller.update(1L, expected);
         System.out.println("response.getBody() = "+response.getBody());

@@ -29,4 +29,10 @@ public class ExpenseRepository {
         repository.put((long)id,e1);
         return id;
     }
+
+    public Expense update(long id, Expense expense) {
+        repository.replace(id, expense);
+        expense.setId(id);
+        return expense;
+    }
 }
