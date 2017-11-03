@@ -6,16 +6,37 @@ public class Expense {
     private long id;
     private String payor;
     private double amount;
-    private int reasonCode;
+    private String reason;
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
     private Date expenseDate;
 
-    public Expense(String payor, double amount, int reasonCode, Date expenseDate) {
+    public Expense(String payor, double amount, String reason, Date expenseDate) {
         this.payor = payor;
         this.amount = amount;
-        this.reasonCode = reasonCode;
+        this.reason = reason;
         this.expenseDate = expenseDate;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
+        Expense e = (Expense)o;
+        if (id != e.id) return false;
+        if (! payor.equalsIgnoreCase(e.payor)) return false;
+        if (amount != e.amount) return false;
+        if (! reason.equalsIgnoreCase(e.reason)) return false;
+        return expenseDate != null ? expenseDate.equals(e.expenseDate) : e.expenseDate == null;
+
+    }
     public long getId() {
         return id;
     }
@@ -40,13 +61,7 @@ public class Expense {
         this.amount = amount;
     }
 
-    public int getReasonCode() {
-        return reasonCode;
-    }
 
-    public void setReasonCode(int reasonCode) {
-        this.reasonCode = reasonCode;
-    }
 
     public Date getExpenseDate() {
         return expenseDate;
