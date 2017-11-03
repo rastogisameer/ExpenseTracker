@@ -55,4 +55,19 @@ public class Expense {
     public void setExpenseDate(Date expenseDate) {
         this.expenseDate = expenseDate;
     }
+
+    @Override
+    public boolean equals(Object expense){
+        if (this == expense) return true;
+        if (expense == null || getClass() != expense.getClass()) return false;
+
+        Expense exp = (Expense) expense;
+
+        if (id != exp.id) return false;
+        if (payor != exp.payor) return false;
+        if (amount != exp.amount) return false;
+        if (reasonCode != exp.reasonCode) return false;
+        return expenseDate != null ? expenseDate.equals(exp.expenseDate) : exp.expenseDate == null;
+
+    }
 }
