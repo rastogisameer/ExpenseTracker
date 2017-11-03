@@ -1,6 +1,6 @@
 ---
 resources:
-- name: expenseTracker
+- name: ExpenseTracker
   type: git
   source:
     uri: {{github-repository}}
@@ -22,7 +22,7 @@ jobs:
   - get: expenseTracker
     trigger: true
   - task: build and test
-    file: expenseTracker/ci/build.yml
+    file: ExpenseTracker/ci/build.yml
     params:
       file: build-output/expenseTracker-*.jar
 
@@ -33,6 +33,6 @@ jobs:
     passed: [build]
   - put: deployExpense
     params:
-      path: expenseTracker-artifacts/expenseTracker-*.jar
+      path: build-output/expenseTracker-*.jar
       environment_variables:
         WELCOME_MESSAGE: "Expense Tracker in review environment"

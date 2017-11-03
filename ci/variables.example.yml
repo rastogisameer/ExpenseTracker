@@ -2,11 +2,20 @@ cf-api-url: CF_API_URL
 cf-username: CF_USERNAME
 cf-password: CF_PASSWORD
 cf-org: CF_ORG
+<<<<<<< HEAD
+=======
+aws-access-key-id: <YOUR_ACCESS_KEY>
+aws-secret-access-key: <YOUR_SECRET_KEY>
+aws-bucket: <YOUR_AWS_S3_BUCKET>
+>>>>>>> 9c8e944ef7fc878e94991967858711b711be08b7
 github-repository: git@github.com:GITHUB_USERNAME/pal-tracker.git
 github-private-key: |
   -----BEGIN RSA PRIVATE KEY-----
   REPLACE WITH YOUR PRIVATE KEY HERE
   -----END RSA PRIVATE KEY-----
+<<<<<<< HEAD
 aws-access-key-id: <YOUR_ACCESS_KEY>
 aws-secret-access-key: <YOUR_SECRET_KEY>
 aws-bucket: <YOUR_AWS_S3_BUCKET>
+=======
+>>>>>>> 9c8e944ef7fc878e94991967858711b711be08b7
