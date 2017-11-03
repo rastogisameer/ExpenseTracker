@@ -1,0 +1,31 @@
+resources:
+- name: expenseTracker
+  type: git
+  source:
+   uri: {{github-repository}}
+   branch: master
+   private_key: {{github-private-key}}
+
+- name: deployment
+  type: cf
+  source:
+   api: {{cf-api-url}}
+   username: {{cf-username}}
+   password: {{cf-password}}
+   organization: {{cf-org}}
+   space: review
+
+jobs:
+- name: build
+  plan:
+  - get: expenseTracker
+    trigger: true
+  - task: build and test
+    file: ExpenseTracker/ci/build.yml
+
+- name: deploy
+  plan:
+  - get: expenseTracker
+  - put: deployment
+    params:
+     path: build/libs/expenseTracker.jar
